@@ -1,25 +1,47 @@
 /* tourslist.css */
 .tour {
-    border: 1px solid #ccc;
-    padding: 10px;
-    margin-bottom: 30px;
-    border-radius: 15px;
-    display: flex;
-    flex-direction: column; /* Display children in a column */
-  }
-  
-  .tour img {
-    width: 75px;
-    height: 100%;
-    object-fit: cover;
-    margin-left: auto;
-  }
-  
-  .tour h1 {
-    margin-bottom: 10px; /* Optional: Add margin below heading */
-  }
-  
-  .tour p {
-    margin-top: 10px; /* Optional: Add margin above paragraph */
-  }
-  
+	border: 1px solid #ccc;
+	padding: 10px;
+	margin-bottom: 30px;
+	border-radius: 15px;
+	display: flex;
+	flex-direction: column; /* Display children in a column */
+}
+
+.tour img {
+	width: 75px;
+	height: 100%;
+	object-fit: cover;
+	margin-left: auto;
+}
+
+.tour h1 {
+	margin-bottom: 10px; /* Optional: Add margin below heading */
+}
+
+.tour p {
+	margin-top: 10px; /* Optional: Add margin above paragraph */
+}
+
+.icon {
+	font-size: 1.5em;
+	color: #00c2ff;
+}
+
+.home {
+	position: absolute;
+	right: 200px;
+	top: 10px;
+}
+
+.browse {
+	position: absolute;
+	right: 100px;
+	top: 10px;
+}
+
+.itinerary {
+	position: absolute;
+	right: 10px;
+	top: 10px;
+}
