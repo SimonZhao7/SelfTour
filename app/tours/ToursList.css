@@ -39,3 +39,32 @@ body {
 	max-width: 10%; /* Ensure image doesn't exceed container width */
 	margin-left: 80%; /* Add space between text and image */
 }
+
+.icon {
+	font-size: 1.5em;
+	color: #00c2ff;
+}
+
+.home {
+	position: absolute;
+	right: 200px;
+	top: 10px;
+}
+
+.browse {
+	position: absolute;
+	right: 100px;
+	top: 10px;
+}
+
+.itinerary {
+	position: absolute;
+	right: 10px;
+	top: 10px;
+}
+
+.home-text {
+	right: 50px;
+	bottom: 20px;
+	transform: rotate(-15deg);
+}
