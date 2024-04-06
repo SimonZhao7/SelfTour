@@ -20,7 +20,9 @@ const HomePage: React.FC<HomePageProps> = (props) => {
 					<text
 						className='start-text'
 						style={{ fontFamily: 'Roboto Mono, monospace' }}>
-						start
+						<a href='/create' style={{ color: 'white', background: 'none' }}>
+							Start
+						</a>
 					</text>
 				</button>
 			</div>
