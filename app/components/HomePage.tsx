@@ -12,9 +12,12 @@ interface HomePageProps {
 const HomePage: React.FC<HomePageProps> = (props) => {
 	return (
 		<div className='page'>
-			<h1>
-				<text className='home-text'>Let's Tour!</text>
-			</h1>
+			<link href="https://fonts.cdnfonts.com/css/porter-sans-block" rel="stylesheet">
+            </link>
+			<div className='home-text'>
+				<text>Let's</text><br></br>
+				<text>&nbsp;&nbsp;Tour!</text>
+			</div>
 			<div className='homepage-content'>
 				<button className='start-button'>
 					<text
