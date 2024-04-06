@@ -29,16 +29,16 @@ const AutocompleteSearch: FunctionComponent<AutocompleteSearchProps> = ({
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((pos) => {
         setPos({ lat: pos.coords.latitude, lng: pos.coords.longitude });
+        setDisabled(false);
       });
     }
-    setDisabled(false);
 
     window.addEventListener("click", handleClickEvent);
     return () => window.removeEventListener("click", handleClickEvent);
   }, []);
 
   useEffect(() => {
-    const timeoutId = setTimeout(() => searchLocations(search), 500);
+    const timeoutId = setTimeout(() => searchLocations(search), 250);
     return () => clearTimeout(timeoutId);
   }, [search]);
 
@@ -69,7 +69,7 @@ const AutocompleteSearch: FunctionComponent<AutocompleteSearchProps> = ({
         type="text"
         style={{ marginBottom: "20px" }}
         value={search}
-        placeholder={placeholder}
+        placeholder={disabled ? "Getting location..." : placeholder}
         onChange={(e) => setSearch(e.target.value)}
       />
       {locations.length > 0 && showRes && (

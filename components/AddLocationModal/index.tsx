@@ -18,7 +18,6 @@ const AddLocationModal: FunctionComponent<AddLocationModalProps> = ({
 }) => {
   const [id, setId] = useState<string>("");
   const [desc, setDesc] = useState<string>("");
-  const [place, setPlace] = useState<google.maps.places.PlaceResult>();
 
   const handleNewPlaceData = async (
     id: string,
@@ -34,20 +33,20 @@ const AddLocationModal: FunctionComponent<AddLocationModalProps> = ({
         if (status === google.maps.places.PlacesServiceStatus.OK && res) {
           if (useAi) {
             const aiResponse = await fetchPlaceDescription(res.name!);
-            console.log(aiResponse);
             setDesc(aiResponse!);
-          }
+          } else {
+						const newPlaceRes: PlaceRes = { ...res, desc };
+						onNewPlaceData(newPlaceRes);
+						setModal(false);
+					}
         }
       }
     );
   };
 
-  const handleFormSubmit: MouseEventHandler<HTMLButtonElement> = (e) => {
+  const handleFormSubmit: MouseEventHandler<HTMLButtonElement> = async (e) => {
     e.preventDefault();
-    const res = handleNewPlaceData(id, desc, false);
-    const newPlaceRes: PlaceRes = { ...res, desc };
-    onNewPlaceData(newPlaceRes);
-    setModal(false);
+    handleNewPlaceData(id, desc, false);
   };
 
   const fetchPlaceDescription = async (placeName: string) => {
@@ -91,7 +90,7 @@ const AddLocationModal: FunctionComponent<AddLocationModalProps> = ({
             onChange={(e) => setDesc(e.target.value)}
             className={styles.textarea}
             placeholder="Enter a description..."
-						value={desc}
+            value={desc}
           ></textarea>
           <button
             onClick={(e) => {

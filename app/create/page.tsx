@@ -32,6 +32,7 @@ const GeneratePlaces: React.FC<GeneratePlacesProps> = (props) => {
           center: { lat: 37.724258589095534, lng: -122.47994314589549 },
           zoom: 15,
           mapId: "TEST_MAP_ID",
+          
         }
       );
       setMap(map);
@@ -40,7 +41,6 @@ const GeneratePlaces: React.FC<GeneratePlacesProps> = (props) => {
       const directionsService = new google.maps.DirectionsService();
       const directionsRenderer = new google.maps.DirectionsRenderer();
       directionsRenderer.setMap(map!);
-
       const waypoints = places.map((place) => {
         const { lat, lng } = place.geometry?.location!;
         return {
@@ -80,9 +80,10 @@ const GeneratePlaces: React.FC<GeneratePlacesProps> = (props) => {
           places.map((place) => (
             <div className={styles.placeCard} key={place.place_id}>
               <div className={styles.cardRow}>
-                <p>{place.name}</p>
+                <h3>{place.name}</h3>
                 <RxCross2
                   size={25}
+                  style={{ cursor: "pointer" }}
                   onClick={() => {
                     setPlaces(
                       places.filter((p) => p.place_id !== place.place_id)
@@ -90,7 +91,7 @@ const GeneratePlaces: React.FC<GeneratePlacesProps> = (props) => {
                   }}
                 />
               </div>
-              <p className={styles.desc}>{place.desc}</p>
+              {place.desc && <p className={styles.desc}>{place.desc}</p>}
             </div>
           ))
         ) : (
@@ -107,7 +108,7 @@ const GeneratePlaces: React.FC<GeneratePlacesProps> = (props) => {
         )}
       </aside>
       <div id="map" style={{ width: "66%", height: "100%" }}>
-        <p>hi</p>
+        <p>&nbsp;</p>
       </div>
       {modalOpen && (
         <AddLocationModal
