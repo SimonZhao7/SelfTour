@@ -27,8 +27,11 @@ body {
 	}
 }
 nav {
-	border: yellow;
-  background-color: transparent;
+  position: sticky;
+  top: 0;
+  border-bottom: rgb(108, 108, 108) 2px solid;
+  background-color: #FFF59B;
+  z-index: 1000;
 }
 
 ul {

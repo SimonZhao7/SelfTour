@@ -15,23 +15,13 @@ body {
 }
 
 .tour-container {
-<<<<<<< HEAD
 	background-color: rgba(255, 255, 255, 0.65);
-
 	border: 2px solid #ccc; /* Border color */
 	border-radius: 10px; /* Rounded edges */
 	overflow: hidden; /* Clip content that overflows the rounded npm corners */
-	padding: 10px; /* Add padding to the container */
-=======
     width: 40vw;
     margin: 20px;
     padding: 20px;
-    background-color: rgba(255, 255, 255, 0.65);
-    border: 2px solid #ccc;
-    border-radius: 10px;
-    overflow: hidden;
-    padding: 20px;
->>>>>>> ea6430ad70bb60c26018192a6420c3b25563031e
 }
 
 .tour-container {
@@ -41,13 +31,3 @@ body {
 .tour-image {
     width: 100px;
 }
-<<<<<<< HEAD
-=======
-
-/* 
-.tour-image {
-    width: 100px;
-    display: flex;
-    justify-content: right;
-} */
->>>>>>> ea6430ad70bb60c26018192a6420c3b25563031e
