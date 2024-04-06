@@ -1,0 +1,42 @@
+/* GeneratePlaces.css */
+.generated-places-box {
+    height: 50vh; 
+    width: 40vh;
+    overflow-y: auto; /* Enables vertical scrolling when necessary */
+    border: 1px solid #ccc; 
+    padding: 10px;
+    margin-bottom: 20px; 
+}
+  
+  .generated-places-box div {
+    list-style-type: none; /* Removes default list styling */
+    padding: 0; 
+    margin: 0; 
+  }
+  
+  .generated-places-box button {
+    margin-bottom: 8px;
+    background: blue; 
+    border-radius: 9px;
+    padding: 8px;
+  }
+  
+/* Custom scrollbar styles */
+.generated-places-box::-webkit-scrollbar {
+    width: 10px; /* Adjust the width of the scrollbar */
+    border-radius: 10px;
+  }
+  
+  .generated-places-box::-webkit-scrollbar-track {
+    background: #f1f1f1; /* The track (progress bar) of the scrollbar */
+    border-radius: 10px; /* Round the corners of the scrollbar handle */  
+}
+  
+  .generated-places-box::-webkit-scrollbar-thumb {
+    background: #888; /* The draggable scrolling handle */
+    border-radius: 10px; /* Round the corners of the scrollbar handle */
+}
+  
+  .generated-places-box::-webkit-scrollbar-thumb:hover {
+    background: #555; /* Color when hovering over the scrollbar thumb */
+  }
