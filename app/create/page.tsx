@@ -6,6 +6,7 @@ import { Loader } from "@googlemaps/js-api-loader";
 import styles from "./style.module.css";
 import AddLocationModal from "@/components/AddLocationModal";
 import { RxCross2 } from "react-icons/rx";
+import { FaSadCry } from "react-icons/fa";
 import { PlaceRes } from "./types";
 
 interface GeneratePlacesProps {
@@ -75,22 +76,35 @@ const GeneratePlaces: React.FC<GeneratePlacesProps> = (props) => {
             Add Location
           </button>
         </div>
-        {places.map((place) => (
-          <div className={styles.placeCard} key={place.place_id}>
-            <div className={styles.cardRow}>
-              <p>{place.name}</p>
-              <RxCross2
-                size={25}
-                onClick={() => {
-                  setPlaces(
-                    places.filter((p) => p.place_id !== place.place_id)
-                  );
-                }}
-              />
+        {places.length > 0 ? (
+          places.map((place) => (
+            <div className={styles.placeCard} key={place.place_id}>
+              <div className={styles.cardRow}>
+                <p>{place.name}</p>
+                <RxCross2
+                  size={25}
+                  onClick={() => {
+                    setPlaces(
+                      places.filter((p) => p.place_id !== place.place_id)
+                    );
+                  }}
+                />
+              </div>
+              <p className={styles.desc}>{place.desc}</p>
             </div>
-            <p className={styles.desc}>{place.desc}</p>
+          ))
+        ) : (
+          <div className={styles.emptyWrapper}>
+            <div>
+              <FaSadCry
+                size={30}
+                style={{ margin: "auto", display: "block" }}
+              />
+              <br />
+              <p>You have no entries in your itinerary!!!</p>
+            </div>
           </div>
-        ))}
+        )}
       </aside>
       <div id="map" style={{ width: "66%", height: "100%" }}>
         <p>hi</p>

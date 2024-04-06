@@ -40,4 +40,9 @@
     background-color: #00C2FF;
     height: 50px;
     border-radius: 99999px;
+    margin: 10px 0;
+}
+
+.purpleBtn {
+    background-color: #bf86eb;
 }
