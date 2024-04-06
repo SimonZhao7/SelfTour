@@ -1,5 +1,4 @@
 import React from 'react';
-import GeneratePlaces from "./GeneratePlaces";
 import Itinerary from "./Itinerary";
 import "./HomePage.css";
 import { FaHome } from "react-icons/fa";

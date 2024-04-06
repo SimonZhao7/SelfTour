@@ -1,6 +1,6 @@
 import React from 'react';
 import "./GeneratePlaces.css";
-import SearchRequests from './SearchRequests';
+import SearchRequests from '../components/SearchRequests';
 
 interface GeneratePlacesProps {
     // Define your props here

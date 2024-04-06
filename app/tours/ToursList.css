@@ -1,0 +1,25 @@
+/* tourslist.css */
+.tour {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 30px;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column; /* Display children in a column */
+  }
+  
+  .tour img {
+    width: 75px;
+    height: 100%;
+    object-fit: cover;
+    margin-left: auto;
+  }
+  
+  .tour h1 {
+    margin-bottom: 10px; /* Optional: Add margin below heading */
+  }
+  
+  .tour p {
+    margin-top: 10px; /* Optional: Add margin above paragraph */
+  }
+  
