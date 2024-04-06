@@ -3,6 +3,10 @@ body {
   background-color: #FFF59B;
 }
 
+body::-webkit-scrollbar {
+  width: 0; /* For Chrome, Safari, and Opera */
+}
+
 .tourGeneratePage {
   margin-top: 40px;
 }
