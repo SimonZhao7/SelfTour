@@ -1,5 +1,6 @@
 "use client";
-
+import { db, app } from "@/firebase";
+import { collection, addDoc } from "firebase/firestore";
 import { useState, useEffect } from "react";
 import "./GeneratePlaces.css";
 import SearchRequests from "../components/SearchRequests";
@@ -8,10 +9,21 @@ import styles from "./style.module.css";
 import AddLocationModal from "@/components/AddLocationModal";
 import AutocompleteSearch from "@/components/AutocompleteSearch";
 import { RxCross2 } from "react-icons/rx";
-import { PlaceRes } from "./types";
+import { DatabasePlaces, PlaceRes } from "./types";
 
 interface GeneratePlacesProps {
   // Define your props here
+}
+
+
+const addItinerary = async (itinerary: DatabasePlaces) => {
+  try {
+    // Add a new document with a generated ID to the "places" collection
+    const docRef = await addDoc(collection(db, "itineraries"), itinerary);
+    console.log("Document written with ID: ", docRef.id);
+  } catch (e) {
+    console.error("Error adding document: ", e);
+  }
 }
 
 const loader = new Loader({
@@ -20,10 +32,11 @@ const loader = new Loader({
   libraries: ["places", "routes"],
 });
 
-const GeneratePlaces: React.FC<GeneratePlacesProps> = (props) => {
+const GeneratePlaces = () => {
   const [map, setMap] = useState<google.maps.Map>();
   const [places, setPlaces] = useState<PlaceRes[]>([]);
   const [modalOpen, setModalOpen] = useState(false);
+    // Optionally, you can return a value here if needed, but it's not necessary for an onClick handler
 
   const handleNewPlaceData = (id: string, desc: string) => {
     const placesService = new google.maps.places.PlacesService(map!);
@@ -59,6 +72,7 @@ const GeneratePlaces: React.FC<GeneratePlacesProps> = (props) => {
       const directionsService = new google.maps.DirectionsService();
       const directionsRenderer = new google.maps.DirectionsRenderer();
       directionsRenderer.setMap(map!);
+      
 
       const waypoints = places.map((place) => {
         const { lat, lng } = place.geometry?.location!;
@@ -82,6 +96,23 @@ const GeneratePlaces: React.FC<GeneratePlacesProps> = (props) => {
       });
     });
   }, [places]);
+  const handleAddToFirestore = () => {
+    if (places.length < 1) return;
+  
+    places.forEach(place => {
+      if (typeof place?.geometry?.location?.lat() === 'number' && typeof place?.geometry?.location?.lng() === 'number') {
+        const currentItinerary: DatabasePlaces = {
+          name: place.name, 
+          lat: place?.geometry?.location?.lat(), 
+          lng: place?.geometry?.location?.lng(),
+          desc: place.desc || ''
+        };
+        
+        addItinerary(currentItinerary);
+      }
+    });
+  };
+  
 
   return (
     <div className={styles.wrapper}>
@@ -111,6 +142,14 @@ const GeneratePlaces: React.FC<GeneratePlacesProps> = (props) => {
             <p className={styles.desc}>{place.desc}</p>
           </div>
         ))}
+      
+
+        <button
+            className={styles.addbutton}
+            onClick={() => handleAddToFirestore()}
+          >
+          Submit
+        </button>
       </aside>
       <div id="map" style={{ width: "66%", height: "100%" }}>
         <p>hi</p>
