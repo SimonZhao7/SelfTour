@@ -2,11 +2,9 @@
 
 import { useState, useEffect } from "react";
 import "./GeneratePlaces.css";
-import SearchRequests from "../components/SearchRequests";
 import { Loader } from "@googlemaps/js-api-loader";
 import styles from "./style.module.css";
 import AddLocationModal from "@/components/AddLocationModal";
-import AutocompleteSearch from "@/components/AutocompleteSearch";
 import { RxCross2 } from "react-icons/rx";
 import { PlaceRes } from "./types";
 
@@ -25,26 +23,8 @@ const GeneratePlaces: React.FC<GeneratePlacesProps> = (props) => {
   const [places, setPlaces] = useState<PlaceRes[]>([]);
   const [modalOpen, setModalOpen] = useState(false);
 
-  const handleNewPlaceData = (id: string, desc: string) => {
-    const placesService = new google.maps.places.PlacesService(map!);
-    placesService.getDetails(
-      {
-        placeId: id,
-      },
-      (res, status) => {
-        if (status === google.maps.places.PlacesServiceStatus.OK && res) {
-          const newPlaceRes: PlaceRes = { ...res, desc };
-          setPlaces([...places, newPlaceRes]);
-        }
-      }
-    );
-  };
-
   useEffect(() => {
     loader.load().then(async () => {
-      // const { Map } = (await google.maps.importLibrary(
-      //   "maps"
-      // )) as google.maps.MapsLibrary;
       const map = new google.maps.Map(
         document.getElementById("map") as HTMLElement,
         {
@@ -115,39 +95,11 @@ const GeneratePlaces: React.FC<GeneratePlacesProps> = (props) => {
       <div id="map" style={{ width: "66%", height: "100%" }}>
         <p>hi</p>
       </div>
-
-      {/* <AutocompleteSearch
-        placeIdChangeHandle={setPlaceId}
-        placeholder="What do you wanna do?"
-      /> */}
-      {/* <h1>here we genreate places!</h1> */}
-      {/* SEARCH BAR TO GENERATE PLACES */}
-      {/* <div className="search-bar">
-        <SearchRequests placeholder="What do you wanna do? 🤩" />
-      </div> */}
-
-      {/* GENERATED PLACES BOD */}
-      {/* <div className="generated-places-box">
-        <h2>Generated Places</h2>
-        <div className="h-50vh overflow-y-scroll">
-          <button className="block w-full">Place 1</button>
-          <button className="block w-full">Place 2</button>
-          <button className="block w-full">Place 3</button>
-          <button className="block w-full">Place 1</button>
-          <button className="block w-full">Place 2</button>
-          <button className="block w-full">Place 3</button>
-          <button className="block w-full">Place 1</button>
-          <button className="block w-full">Place 2</button>
-          <button className="block w-full">Place 3</button>
-          <button className="block w-full">Place 1</button>
-          <button className="block w-full">Place 2</button>
-          <button className="block w-full">Place 3</button>
-        </div>
-      </div> */}
       {modalOpen && (
         <AddLocationModal
           setModal={setModalOpen}
-          onNewPlaceData={handleNewPlaceData}
+          onNewPlaceData={(placeData) => setPlaces([...places, placeData])}
+          map={map!}
         />
       )}
     </div>

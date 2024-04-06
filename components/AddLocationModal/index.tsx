@@ -4,17 +4,34 @@ import styles from "./style.module.css";
 import { RxCross2 } from "react-icons/rx";
 import { AddLocationModalProps } from "./types";
 import AutocompleteSearch from "../AutocompleteSearch";
+import { PlaceRes } from "@/app/create/types";
 
 const AddLocationModal: FunctionComponent<AddLocationModalProps> = ({
   setModal,
   onNewPlaceData,
+  map,
 }) => {
   const [id, setId] = useState<string>("");
   const [desc, setDesc] = useState<string>("");
 
+  const handleNewPlaceData = (id: string, desc: string) => {
+    const placesService = new google.maps.places.PlacesService(map!);
+    placesService.getDetails(
+      {
+        placeId: id,
+      },
+      (res, status) => {
+        if (status === google.maps.places.PlacesServiceStatus.OK && res) {
+          const newPlaceRes: PlaceRes = { ...res, desc };
+          onNewPlaceData(newPlaceRes);
+        }
+      }
+    );
+  };
+
   const handleFormSubmit: MouseEventHandler<HTMLButtonElement> = (e) => {
     e.preventDefault();
-    onNewPlaceData(id, desc);
+    handleNewPlaceData(id, desc);
     setModal(false);
   };
 

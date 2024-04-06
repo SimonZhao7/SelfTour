@@ -5,6 +5,7 @@ import './globals.css';
 import { FaHome } from 'react-icons/fa';
 import { IoEarth } from 'react-icons/io5';
 import { CiCirclePlus } from 'react-icons/ci';
+import { Metadata } from 'next/types';
 
 const inter = Inter({ subsets: ['latin'] });
 
