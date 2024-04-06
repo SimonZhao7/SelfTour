@@ -1,5 +1,5 @@
 "use client";
-import { db, app } from "@/firebase";
+import { db } from "@/firebase";
 import { collection, addDoc } from "firebase/firestore";
 import { useState, useEffect } from "react";
 import "./GeneratePlaces.css";
@@ -8,22 +8,8 @@ import styles from "./style.module.css";
 import AddLocationModal from "@/components/AddLocationModal";
 import { RxCross2 } from "react-icons/rx";
 import { FaSadCry } from "react-icons/fa";
-import { DatabasePlaces, PlaceRes } from "./types";
-
-interface GeneratePlacesProps {
-  // Define your props here
-}
-
-
-const addItinerary = async (itinerary: DatabasePlaces) => {
-  try {
-    // Add a new document with a generated ID to the "places" collection
-    const docRef = await addDoc(collection(db, "itineraries"), itinerary);
-    console.log("Document written with ID: ", docRef.id);
-  } catch (e) {
-    console.error("Error adding document: ", e);
-  }
-}
+import { DatabasePlaces, PlaceRes, Itinerary } from "./types";
+import { useRouter } from "next/navigation";
 
 const loader = new Loader({
   apiKey: process.env.NEXT_PUBLIC_MAPS_API_KEY!,
@@ -33,23 +19,21 @@ const loader = new Loader({
 
 const GeneratePlaces = () => {
   const [map, setMap] = useState<google.maps.Map>();
+  const [title, setTitle] = useState("My Itinerary");
   const [places, setPlaces] = useState<PlaceRes[]>([]);
   const [modalOpen, setModalOpen] = useState(false);
-    // Optionally, you can return a value here if needed, but it's not necessary for an onClick handler
+  const router = useRouter();
+  // Optionally, you can return a value here if needed, but it's not necessary for an onClick handler
 
-  const handleNewPlaceData = (id: string, desc: string) => {
-    const placesService = new google.maps.places.PlacesService(map!);
-    placesService.getDetails(
-      {
-        placeId: id,
-      },
-      (res, status) => {
-        if (status === google.maps.places.PlacesServiceStatus.OK && res) {
-          const newPlaceRes: PlaceRes = { ...res, desc };
-          setPlaces([...places, newPlaceRes]);
-        }
-      }
-    );
+  const addItinerary = async (itinerary: Itinerary) => {
+    try {
+      // Add a new document with a generated ID to the "places" collection
+      const docRef = await addDoc(collection(db, "itineraries"), itinerary);
+      console.log("Document written with ID: ", docRef.id);
+      router.push("/tours");
+    } catch (e) {
+      console.error("Error adding document: ", e);
+    }
   };
 
   useEffect(() => {
@@ -60,7 +44,6 @@ const GeneratePlaces = () => {
           center: { lat: 37.724258589095534, lng: -122.47994314589549 },
           zoom: 15,
           mapId: "TEST_MAP_ID",
-          
         }
       );
       setMap(map);
@@ -69,7 +52,6 @@ const GeneratePlaces = () => {
       const directionsService = new google.maps.DirectionsService();
       const directionsRenderer = new google.maps.DirectionsRenderer();
       directionsRenderer.setMap(map!);
-      
 
       const waypoints = places.map((place) => {
         const { lat, lng } = place.geometry?.location!;
@@ -93,29 +75,40 @@ const GeneratePlaces = () => {
       });
     });
   }, [places]);
+
   const handleAddToFirestore = () => {
     if (places.length < 1) return;
-  
-    places.forEach(place => {
-      if (typeof place?.geometry?.location?.lat() === 'number' && typeof place?.geometry?.location?.lng() === 'number') {
+
+    let destinations: DatabasePlaces[] = [];
+    places.forEach((place) => {
+      if (
+        typeof place?.geometry?.location?.lat() === "number" &&
+        typeof place?.geometry?.location?.lng() === "number"
+      ) {
         const currentItinerary: DatabasePlaces = {
-          name: place.name, 
-          lat: place?.geometry?.location?.lat(), 
+          name: place.name,
+          lat: place?.geometry?.location?.lat(),
           lng: place?.geometry?.location?.lng(),
-          desc: place.desc || ''
+          desc: place.desc || "",
         };
-        
-        addItinerary(currentItinerary);
+        destinations.push(currentItinerary);
       }
     });
+    addItinerary({ destinations, title });
   };
-  
-
   return (
     <div className={styles.wrapper}>
       <aside className={styles.tourItems}>
         <div className={styles.itinRow}>
-          <h1>Itinerary</h1>
+          <input
+            type="text"
+            className={styles.title}
+            value={title}
+            onChange={(e) => {
+              setTitle(e.target.value);
+            }}
+            placeholder="Please enter a title"
+          />
           <button
             className={styles.addButton}
             onClick={() => setModalOpen(true)}
@@ -124,23 +117,31 @@ const GeneratePlaces = () => {
           </button>
         </div>
         {places.length > 0 ? (
-          places.map((place) => (
-            <div className={styles.placeCard} key={place.place_id}>
-              <div className={styles.cardRow}>
-                <h3>{place.name}</h3>
-                <RxCross2
-                  size={25}
-                  style={{ cursor: "pointer" }}
-                  onClick={() => {
-                    setPlaces(
-                      places.filter((p) => p.place_id !== place.place_id)
-                    );
-                  }}
-                />
+          <>
+            {places.map((place) => (
+              <div className={styles.placeCard} key={place.place_id}>
+                <div className={styles.cardRow}>
+                  <h3>{place.name}</h3>
+                  <RxCross2
+                    size={25}
+                    style={{ cursor: "pointer" }}
+                    onClick={() => {
+                      setPlaces(
+                        places.filter((p) => p.place_id !== place.place_id)
+                      );
+                    }}
+                  />
+                </div>
+                {place.desc && <p className={styles.desc}>{place.desc}</p>}
               </div>
-              {place.desc && <p className={styles.desc}>{place.desc}</p>}
-            </div>
-          ))
+            ))}
+            <button
+              className={styles.addButton}
+              onClick={() => handleAddToFirestore()}
+            >
+              Submit
+            </button>
+          </>
         ) : (
           <div className={styles.emptyWrapper}>
             <div>
@@ -153,15 +154,6 @@ const GeneratePlaces = () => {
             </div>
           </div>
         )}
-        ))}
-      
-
-        <button
-            className={styles.addbutton}
-            onClick={() => handleAddToFirestore()}
-          >
-          Submit
-        </button>
       </aside>
       <div id="map" style={{ width: "66%", height: "100%" }}>
         <p>&nbsp;</p>

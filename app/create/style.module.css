@@ -18,6 +18,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: 30px;
     margin-bottom: 40px;
 }
 
@@ -30,6 +31,7 @@
     padding: 5px 20px;
     border-radius: 5px;
     font-size: 14px;
+    text-wrap: nowrap;
 }
 
 .placeCard {
@@ -56,12 +58,9 @@
 .desc {
     font-size: 14px;
     text-overflow: ellipsis;
-<<<<<<< HEAD
 }
 
 .submit-button {
-    
-=======
     margin-top: 10px;
     color: gray;
 }
@@ -72,5 +71,12 @@
     display: flex;
     align-items: center;
     justify-content: center;
->>>>>>> b9520b75fabbec70bc351c993b7799b43fba039a
+}
+
+.title {
+    font-size: 36px;
+    background-color: transparent;
+    border: 0;
+    border-bottom: 2px solid black;
+    outline: none;
 }
