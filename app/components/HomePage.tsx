@@ -4,9 +4,10 @@ import './HomePage.css';
 import { FaHome } from 'react-icons/fa';
 import { IoEarth } from 'react-icons/io5';
 import { CiCirclePlus } from 'react-icons/ci';
+import Image from 'next/image';
 
 interface HomePageProps {
-	// Define your props here
+    // Define your props here
 }
 
 const HomePage: React.FC<HomePageProps> = (props) => {
@@ -18,6 +19,11 @@ const HomePage: React.FC<HomePageProps> = (props) => {
 				<text>Let's</text><br></br>
 				<text>&nbsp;&nbsp;Tour!</text>
 			</div>
+            <Image
+                src="/mascot.png"
+                width={500}
+                height={500}
+                alt="mascot" className="mascot" />
 			<div className='homepage-content'>
 				<button className='start-button'>
 					<text
