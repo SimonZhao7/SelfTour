@@ -155,7 +155,7 @@ const GeneratePlaces = () => {
           </div>
         )}
       </aside>
-      <div id="map" style={{ width: "66%", height: "100%" }}>
+      <div id="map" style={{ width: "66%", height: "calc(100% - 60px)" }}>
         <p>&nbsp;</p>
       </div>
       {modalOpen && (

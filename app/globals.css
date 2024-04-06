@@ -3,29 +3,22 @@
 @tailwind utilities;
 
 :root {
-	--foreground-rgb: 0, 0, 0;
 	--background-start-rgb: 214, 219, 220;
 	--background-end-rgb: 255, 255, 255;
 }
 
-@media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: dark) {
 	:root {
 		--foreground-rgb: 255, 255, 255;
 		--background-start-rgb: 0, 0, 0;
 		--background-end-rgb: 0, 0, 0;
 	}
-}
-
+} */
+ 
 body {
   width: 100vw;
   height: 100vh;
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  
 }
 
 @layer utilities {
@@ -34,27 +27,42 @@ body {
 	}
 }
 nav {
-	background-color: #333; /* Add background color */
+	border: yellow;
+  background-color: transparent;
 }
 
 ul {
+  display: flexbox;
+  justify-content: flex-end;
 	list-style-type: none;
-	margin: 0;
-	padding: 0;
+	margin-right: 20px;
+	padding-left:20px;
 	display: flex; /* Display items horizontally */
+  font-size: 27px;
 }
 
 li {
 	padding: 10px;
 }
 
-/* Style for links */
 a {
-	color: #333;
-	text-decoration: none;
+  position: relative;
+  text-decoration: none;
+  background-color: black;
 }
 
-/* Style for links on hover */
-a:hover {
-	background-color: #555;
+a::after {
+  content: '';
+  position: absolute;
+  bottom: -6px; /* Increase the distance from the text */
+  left: 0;
+  width: 100%;
+  height: 4px; /* Increase the height of the underline */
+  background-color: #009dcd;
+  transition: height 0.3s ease, background-color 0.3s ease; /* Add transition for height and background-color */
+}
+
+a:hover::after {
+  background-color: #ffe600;
+  height: 6px; /* Increase the height on hover */
 }

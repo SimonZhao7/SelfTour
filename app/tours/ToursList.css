@@ -1,70 +1,41 @@
 body {
-	margin: 0;
-	background-color: hsl(194, 100%, 76%);
-}
-
-#root {
-	width: 100%;
-	height: 100vh;
-	display: flex;
-	justify-content: center; /* Center horizontally */
-	align-items: center; /* Center vertically */
+    background-color: #00c2ff;
 }
 
 .tours-list {
-	padding: 20px;
+    display: flex;
+    justify-content: center;
+    /* Center horizontally */
+    align-items: center;
+    /* Center vertically */
+    flex-wrap: wrap;
+    /* Allow items to wrap to next line */
+    margin-top: 40px;
+    ;
 }
 
 .tour-container {
-	background-color: rgba(255, 255, 255, 0.65);
-
-	border: 2px solid #ccc; /* Border color */
-	border-radius: 10px; /* Rounded edges */
-	overflow: hidden; /* Clip content that overflows the rounded corners */
-	padding: 10px; /* Add padding to the container */
+    width: 40vw;
+    margin: 20px;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.65);
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    overflow: hidden;
+    padding: 20px;
 }
 
-.tour-title {
-	margin-top: 0; /* Remove default margin */
-	margin-left: 500px;
+.tour-container {
+  display: flex;
+  justify-content: space-between
 }
-
-.tour-content {
-	display: flex;
-	align-items: center; /* Align content vertically */
-	margin-top: 10px; /* Add space between title and content */
-}
-
 .tour-image {
-	max-width: 10%; /* Ensure image doesn't exceed container width */
-	margin-left: 80%; /* Add space between text and image */
+    width: 100px;
 }
 
-.icon {
-	font-size: 1.5em;
-	color: #00c2ff;
-}
-
-.home {
-	position: absolute;
-	right: 200px;
-	top: 10px;
-}
-
-.browse {
-	position: absolute;
-	right: 100px;
-	top: 10px;
-}
-
-.itinerary {
-	position: absolute;
-	right: 10px;
-	top: 10px;
-}
-
-.home-text {
-	right: 50px;
-	bottom: 20px;
-	transform: rotate(-15deg);
-}
+/* 
+.tour-image {
+    width: 100px;
+    display: flex;
+    justify-content: right;
+} */
