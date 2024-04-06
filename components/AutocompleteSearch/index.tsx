@@ -1,8 +1,11 @@
 import { useRef, useState, useEffect, FunctionComponent } from "react";
 import { AutocompleteSearchProps } from "./types";
 import styles from "./style.module.css";
+// Icons
+import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 
 const AutocompleteSearch: FunctionComponent<AutocompleteSearchProps> = ({
+  placeholder,
   placeIdChangeHandle,
 }) => {
   const [search, setSearch] = useState("");
@@ -15,7 +18,6 @@ const AutocompleteSearch: FunctionComponent<AutocompleteSearchProps> = ({
   const inputWrapper = useRef<HTMLDivElement>(null);
 
   const handleClickEvent = (e: MouseEvent) => {
-    e.stopPropagation();
     if (inputWrapper.current?.contains(e.target as Node)) {
       setShowRes(true);
     } else {
@@ -60,12 +62,14 @@ const AutocompleteSearch: FunctionComponent<AutocompleteSearchProps> = ({
 
   return (
     <div className={styles.wrapper} ref={inputWrapper}>
+      <MagnifyingGlassIcon className="absolute left-2 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900" />
       <input
         className={styles.autoInput}
         disabled={disabled}
         type="text"
         style={{ marginBottom: "20px" }}
         value={search}
+        placeholder={placeholder}
         onChange={(e) => setSearch(e.target.value)}
       />
       {locations.length > 0 && showRes && (
