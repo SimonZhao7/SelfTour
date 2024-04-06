@@ -23,7 +23,7 @@ export default function RootLayout({
 			<body className={inter.className}>
 				<nav>
 					<ul>
-						<li style={{ pointerEvents: 'none' }}>
+						<li style={{ color: 'black', pointerEvents: 'none' }}>
 							<Link href='/'>home</Link>
 						</li>
 						<li style={{ pointerEvents: 'none' }}>
@@ -39,12 +39,12 @@ export default function RootLayout({
 							</a>
 						</li>
 						<li>
-							<a href='/tours' className='itinerary-button'>
+							<a href='/create' className='itinerary-button'>
 								<CiCirclePlus className='icon itinerary' />
 							</a>
 						</li>
 						<li>
-							<a href='/create' className='browse-button'>
+							<a href='/tours' className='browse-button'>
 								<IoEarth className='browse icon' />
 							</a>
 						</li>
