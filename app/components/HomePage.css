@@ -1,0 +1,49 @@
+.page {
+    height: 100vh;
+
+    background: radial-gradient(circle at center, #FFF59B, #86E2FF);
+  }
+
+.start-button {
+    position: absolute;
+    bottom: 20px; /* Adjust this value to set the distance from the bottom */
+    right: 20px;
+    background: #00C2FF;
+    width: 18.2%;
+    height: 9.5%;
+    line-height: 9.5%;
+}
+
+.start-text {
+    font-size: 40px;
+    align-items: center;
+}
+
+.icon {
+    font-size: 4.5em;
+    color: #00C2FF;
+}
+
+.home {
+    position: absolute;
+    right: 200px;
+    top: 10px;
+}
+
+.browse {
+    position: absolute;
+    right: 100px;
+    top: 10px;
+}
+
+.itinerary {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+}
+
+.home-text {
+    right: 50px;
+    bottom: 20px;
+    transform: rotate(-15deg);
+}
