@@ -3,12 +3,11 @@ import { db, app } from "@/firebase";
 import { collection, addDoc } from "firebase/firestore";
 import { useState, useEffect } from "react";
 import "./GeneratePlaces.css";
-import SearchRequests from "../components/SearchRequests";
 import { Loader } from "@googlemaps/js-api-loader";
 import styles from "./style.module.css";
 import AddLocationModal from "@/components/AddLocationModal";
-import AutocompleteSearch from "@/components/AutocompleteSearch";
 import { RxCross2 } from "react-icons/rx";
+import { FaSadCry } from "react-icons/fa";
 import { DatabasePlaces, PlaceRes } from "./types";
 
 interface GeneratePlacesProps {
@@ -55,15 +54,13 @@ const GeneratePlaces = () => {
 
   useEffect(() => {
     loader.load().then(async () => {
-      // const { Map } = (await google.maps.importLibrary(
-      //   "maps"
-      // )) as google.maps.MapsLibrary;
       const map = new google.maps.Map(
         document.getElementById("map") as HTMLElement,
         {
           center: { lat: 37.724258589095534, lng: -122.47994314589549 },
           zoom: 15,
           mapId: "TEST_MAP_ID",
+          
         }
       );
       setMap(map);
@@ -126,21 +123,36 @@ const GeneratePlaces = () => {
             Add Location
           </button>
         </div>
-        {places.map((place) => (
-          <div className={styles.placeCard} key={place.place_id}>
-            <div className={styles.cardRow}>
-              <p>{place.name}</p>
-              <RxCross2
-                size={25}
-                onClick={() => {
-                  setPlaces(
-                    places.filter((p) => p.place_id !== place.place_id)
-                  );
-                }}
-              />
+        {places.length > 0 ? (
+          places.map((place) => (
+            <div className={styles.placeCard} key={place.place_id}>
+              <div className={styles.cardRow}>
+                <h3>{place.name}</h3>
+                <RxCross2
+                  size={25}
+                  style={{ cursor: "pointer" }}
+                  onClick={() => {
+                    setPlaces(
+                      places.filter((p) => p.place_id !== place.place_id)
+                    );
+                  }}
+                />
+              </div>
+              {place.desc && <p className={styles.desc}>{place.desc}</p>}
             </div>
-            <p className={styles.desc}>{place.desc}</p>
+          ))
+        ) : (
+          <div className={styles.emptyWrapper}>
+            <div>
+              <FaSadCry
+                size={30}
+                style={{ margin: "auto", display: "block" }}
+              />
+              <br />
+              <p>You have no entries in your itinerary!!!</p>
+            </div>
           </div>
+        )}
         ))}
       
 
@@ -152,41 +164,13 @@ const GeneratePlaces = () => {
         </button>
       </aside>
       <div id="map" style={{ width: "66%", height: "100%" }}>
-        <p>hi</p>
+        <p>&nbsp;</p>
       </div>
-
-      {/* <AutocompleteSearch
-        placeIdChangeHandle={setPlaceId}
-        placeholder="What do you wanna do?"
-      /> */}
-      {/* <h1>here we genreate places!</h1> */}
-      {/* SEARCH BAR TO GENERATE PLACES */}
-      {/* <div className="search-bar">
-        <SearchRequests placeholder="What do you wanna do? 🤩" />
-      </div> */}
-
-      {/* GENERATED PLACES BOD */}
-      {/* <div className="generated-places-box">
-        <h2>Generated Places</h2>
-        <div className="h-50vh overflow-y-scroll">
-          <button className="block w-full">Place 1</button>
-          <button className="block w-full">Place 2</button>
-          <button className="block w-full">Place 3</button>
-          <button className="block w-full">Place 1</button>
-          <button className="block w-full">Place 2</button>
-          <button className="block w-full">Place 3</button>
-          <button className="block w-full">Place 1</button>
-          <button className="block w-full">Place 2</button>
-          <button className="block w-full">Place 3</button>
-          <button className="block w-full">Place 1</button>
-          <button className="block w-full">Place 2</button>
-          <button className="block w-full">Place 3</button>
-        </div>
-      </div> */}
       {modalOpen && (
         <AddLocationModal
           setModal={setModalOpen}
-          onNewPlaceData={handleNewPlaceData}
+          onNewPlaceData={(placeData) => setPlaces([...places, placeData])}
+          map={map!}
         />
       )}
     </div>

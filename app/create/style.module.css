@@ -38,6 +38,7 @@
     border-radius: 3px;
     max-height: 200px;
     overflow: hidden;
+    margin: 15px 0;
 }
 
 .cardRow {
@@ -48,11 +49,28 @@
     text-overflow: ellipsis;
 }
 
+.cardRow h3 {
+    font-weight: 500;
+}
+
 .desc {
     font-size: 14px;
     text-overflow: ellipsis;
+<<<<<<< HEAD
 }
 
 .submit-button {
     
+=======
+    margin-top: 10px;
+    color: gray;
+}
+
+.emptyWrapper {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+>>>>>>> b9520b75fabbec70bc351c993b7799b43fba039a
 }
