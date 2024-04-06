@@ -1,6 +1,6 @@
-body{
-
+body {
 	background: radial-gradient(circle at center, #fff59b, #86e2ff);
+	overflow: hidden;
 }
 
 .start-button {
@@ -17,4 +17,14 @@ body{
 .start-text {
 	font-size: 40px;
 	align-items: center;
+}
+
+.home-text {
+	position: absolute;
+	right: 10%;
+	bottom: 17%;
+	transform: rotate(-30deg);
+	font-size: 90px;
+	font-family: 'Porter Sans Block', sans-serif;
+	line-height: 1;
 }
