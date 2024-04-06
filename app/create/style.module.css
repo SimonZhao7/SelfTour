@@ -56,12 +56,10 @@
 .desc {
     font-size: 14px;
     text-overflow: ellipsis;
-<<<<<<< HEAD
 }
 
 .submit-button {
     
-=======
     margin-top: 10px;
     color: gray;
 }
@@ -72,5 +70,4 @@
     display: flex;
     align-items: center;
     justify-content: center;
->>>>>>> b9520b75fabbec70bc351c993b7799b43fba039a
 }

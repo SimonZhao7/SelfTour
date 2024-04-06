@@ -153,16 +153,13 @@ const GeneratePlaces = () => {
             </div>
           </div>
         )}
-        ))}
-      
-
+        </aside>
         <button
             className={styles.addbutton}
             onClick={() => handleAddToFirestore()}
           >
           Submit
         </button>
-      </aside>
       <div id="map" style={{ width: "66%", height: "100%" }}>
         <p>&nbsp;</p>
       </div>

@@ -24,29 +24,21 @@ export default function RootLayout({
 			<body className={inter.className}>
 				<nav>
 					<ul>
-						<li style={{ color: 'black', pointerEvents: 'none' }}>
-							<Link href='/'>home</Link>
-						</li>
-						<li style={{ pointerEvents: 'none' }}>
-							<Link href='/tours'>tours</Link>
-						</li>
-						<li style={{ pointerEvents: 'none' }}>
-							<Link href='/create'>create</Link>
-						</li>
+						
 						{/* Add the anchor tags here */}
 						<li>
 							<a href='/' className='home-button'>
-								<FaHome className='icon home' />
+								<h1>home</h1>
+							</a>
+						</li>
+            <li>
+							<a href='/tours' className='browse-button'>
+								<h1>tours</h1>
 							</a>
 						</li>
 						<li>
 							<a href='/create' className='itinerary-button'>
-								<CiCirclePlus className='icon itinerary' />
-							</a>
-						</li>
-						<li>
-							<a href='/tours' className='browse-button'>
-								<IoEarth className='browse icon' />
+								<h1>create</h1>
 							</a>
 						</li>
 					</ul>
