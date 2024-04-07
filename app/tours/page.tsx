@@ -22,38 +22,39 @@ const ToursList = () => {
 	const [descriptions, setDescriptions] = useState<string[]>([]);
 
 	useEffect(() => {
-		// const fetchItineraries = async () => {
-		// 	try {
-		// 		const querySnapshot = await getDocs(collection(db, 'itineraries'));
-		// 		const itinerariesData = querySnapshot.docs.map((doc) => ({
-		// 			id: doc.id,
-		// 			...doc.data(),
-		// 			descriptions: [], // Initialize descriptions array for each itinerary
-		// 		}));
+		const fetchItineraries = async () => {
+			try {
+				const querySnapshot = await getDocs(collection(db, 'itineraries'));
+				const itinerariesData = querySnapshot.docs.map((doc) => ({
+					id: doc.id,
+					...doc.data(),
+					// descriptions: [], // Initialize descriptions array for each itinerary
+				}));
 
-		// 		// Fetch and store descriptions for destinations
-		// 		const fetchedDescriptions = await Promise.all(
-		// 			itinerariesData.map(async (itinerary) => {
-		// 				const destinationDescriptions = await Promise.all(
-		// 					itinerary.descriptions.map(async (desc) => {
-		// 						const description = await fetchPlaceDescription(
-		// 							desc.name
-		// 						);
-		// 						return description;
-		// 					})
-		// 				);
-		// 				return destinationDescriptions;
-		// 			})
-		// 		);
+				// Fetch and store descriptions for destinations
+				const fetchedDescriptions = await Promise.all(
+					itinerariesData
+					itinerariesData.map(async (itinerary) => {
+						const destinationDescriptions = await Promise.all(
+							itinerary.descriptions.map(async (desc) => {
+								const description = await fetchPlaceDescription(
+									desc.name
+								);
+								return description;
+							})
+						);
+						return destinationDescriptions;
+					})
+				);
 
-		// 		setDescriptions(fetchedDescriptions);
-		// 		setItineraries(itinerariesData);
-		// 	} catch (error) {
-		// 		console.error('Error fetching itineraries: ', error);
-		// 	}
-		// };
+				setDescriptions(fetchedDescriptions);
+				setItineraries(itinerariesData);
+			} catch (error) {
+				console.error('Error fetching itineraries: ', error);
+			}
+		};
 
-		// fetchItineraries();
+		fetchItineraries();
 	}, []);
 
 	const fetchPlaceDescription = async (placeName: string) => {
