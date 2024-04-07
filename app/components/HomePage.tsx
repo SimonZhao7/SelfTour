@@ -7,6 +7,7 @@ import { CiCirclePlus } from 'react-icons/ci';
 import Image from 'next/image';
 import { BsStars } from "react-icons/bs";
 
+
 interface HomePageProps {
     // Define your props here
 }
