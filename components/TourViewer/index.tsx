@@ -64,7 +64,7 @@ const TourViewer: FunctionComponent<TourViewerProps> = ({ tour: tour }) => {
 
         const d = haversine_distance(
           /* MODIFY FOR DEMO */
-          new google.maps.LatLng(37.794633515372794, -122.40581673226512),
+          new google.maps.LatLng(lat, lng),
           new google.maps.LatLng(dstLat, dstLng)
         );
         if (d < VALID_DIST_THRESHOLD) {
