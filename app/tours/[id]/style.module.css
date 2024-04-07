@@ -2,3 +2,20 @@
     display: flex;
     height: calc(100% - 60px);
 }
+
+.startBtn {
+    position: absolute;
+    bottom: 30px;
+    right: 75px;
+    padding: 10px 20px;
+    background-color: #FFF59B;
+    border-radius: 9999px;
+    box-shadow: 0 5px 5px lightgray;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.startBtn:hover {
+    transform: scale(1.1);
+    background-color: #ebe18f;
+}
