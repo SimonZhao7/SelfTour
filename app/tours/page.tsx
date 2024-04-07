@@ -44,8 +44,8 @@ const ToursList = async () => {
         {allTours.map((tour, i) => {
           const { id, destinations } = tour;
           return (
-            <Link style={{ textDecoration: "none" }} href={`/tours/${id}`}>
               <div key={id} className={styles.card}>
+				<Link style={{ textDecoration: "none" }} href={`/tours/${id}`}>
                 <img
                   className={styles.img}
                   src={images[i]}
@@ -59,8 +59,8 @@ const ToursList = async () => {
                     ))}
                   </div>
                 </div>
+				</Link>  
               </div>
-            </Link>
           );
         })}
       </section>

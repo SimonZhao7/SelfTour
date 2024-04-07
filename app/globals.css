@@ -53,19 +53,7 @@ a {
   text-decoration: none;
   background-color: black;
 }
-
-a::after {
-  content: '';
-  position: absolute;
-  bottom: -6px; /* Increase the distance from the text */
-  left: 0;
-  width: 100%;
-  height: 4px; /* Increase the height of the underline */
-  background-color: #009dcd;
-  transition: height 0.3s ease, background-color 0.3s ease; /* Add transition for height and background-color */
-}
-
-a:hover::after {
-  background-color: #ffe600;
-  height: 6px; /* Increase the height on hover */
+li:hover{
+  background-color: #00c2ff;
+  transition: 0.5s ease smooth all; 
 }

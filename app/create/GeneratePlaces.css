@@ -7,10 +7,6 @@ body::-webkit-scrollbar {
   width: 0; /* For Chrome, Safari, and Opera */
 }
 
-.tourGeneratePage {
-  margin-top: 40px;
-}
-
 .generated-places-box {
   height: 50vh;
   width: 40vh;
