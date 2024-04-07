@@ -22,7 +22,7 @@ const HomePage: React.FC<HomePageProps> = (props) => {
 
 
 			<div className='home-text'>
-				<text>Let's</text><br></br>
+				<text>Let&apos;s</text><br></br>
 				<text>&nbsp;&nbsp;Tour!</text>
 			</div>
             <Image
