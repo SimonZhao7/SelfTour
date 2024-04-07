@@ -1,55 +1,55 @@
-import React from 'react';
+'use client';
+import React, { useState, useEffect } from 'react';
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "@/firebase";
+import AddLocationModal from "@/components/AddLocationModal";
+import { DatabasePlaces, PlaceRes, Itinerary } from "./types";
+import TourDetailView from './TourDetailView';
 import './ToursList.css';
+
 const ToursList = () => {
+  const [itineraries, setItineraries] = useState<Itinerary[]>([]);
+  const [selectedItinerary, setSelectedItinerary] = useState<Itinerary | null>(null);
+
+  
+  useEffect(() => {
+    const fetchItineraries = async () => {
+      try {
+        const querySnapshot = await getDocs(collection(db, "itineraries"));
+        const itinerariesData = querySnapshot.docs.map(doc => {
+          const data = doc.data();
+          
+          return { id: doc.id, ...data };
+        });
+        setItineraries(itinerariesData);
+        console.log("Data:", itinerariesData);
+      } catch (error) {
+        console.error("Error fetching itineraries: ", error);}
+    };
+
+    fetchItineraries();
+  }, []);
+  function handleTourDetailClick(itinerary: Itinerary) {
+    setSelectedItinerary(itinerary);
+  }
+
   return (
     <div>
       <div className='tours-list'>
-      <div className='tour-container'>
-            <div>
-              <h1>Tour 1</h1>
-              <p>This is the first tour</p>
-            </div>
-            <img
-              className='tour-image'
-              src='https://media.istockphoto.com/id/1136437406/photo/san-francisco-skyline-with-oakland-bay-bridge-at-sunset-california-usa.jpg?s=612x612&w=0&k=20&c=JVBBZT2uquZbfY0njYHv8vkLfatoM4COJc-lX5QKYpE='
-              alt='ggbridge'></img>
+        {itineraries.map((itinerary, index) => (
+          <div className='tour-container' key={index} onClick={() => handleTourDetailClick(itinerary)}>
+            <h2>{itinerary.title}</h2>
+            {itinerary.destinations.map((destination, i) => (
+              <div key={i}>
+                <h3>{destination.name}</h3>
+              </div>
+            ))}
+            <p>tbd ai summary</p> {/*r eplced w ai descrip*/}
+            <br></br>
           </div>
-
-       
-          <div className='tour-container'>
-            <div>
-              <h1>Tour 1</h1>
-              <p>This is the first tour</p>
-            </div>
-            <img
-              className='tour-image'
-              src='https://media.istockphoto.com/id/1136437406/photo/san-francisco-skyline-with-oakland-bay-bridge-at-sunset-california-usa.jpg?s=612x612&w=0&k=20&c=JVBBZT2uquZbfY0njYHv8vkLfatoM4COJc-lX5QKYpE='
-              alt='ggbridge'></img>
-          </div>
-        
-
-          <div className='tour-container'>
-            <div>
-              <h1>Tour 1</h1>
-              <p>This is the first tour</p>
-            </div>
-            <img
-              className='tour-image'
-              src='https://media.istockphoto.com/id/1136437406/photo/san-francisco-skyline-with-oakland-bay-bridge-at-sunset-california-usa.jpg?s=612x612&w=0&k=20&c=JVBBZT2uquZbfY0njYHv8vkLfatoM4COJc-lX5QKYpE='
-              alt='ggbridge'></img>
-          </div>
-
-          <div className='tour-container'>
-            <div>
-              <h1>Tour 1</h1>
-              <p>This is the first tour</p>
-            </div>
-            <img
-              className='tour-image'
-              src='https://media.istockphoto.com/id/1136437406/photo/san-francisco-skyline-with-oakland-bay-bridge-at-sunset-california-usa.jpg?s=612x612&w=0&k=20&c=JVBBZT2uquZbfY0njYHv8vkLfatoM4COJc-lX5QKYpE='
-              alt='ggbridge'></img>
-          </div>
+        ))}
       </div>
+      {selectedItinerary && <TourDetailView itinerary={selectedItinerary} />}
     </div>
   );
 };
