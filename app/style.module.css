@@ -1,0 +1,27 @@
+.navBar {
+    position: sticky;
+    top: 0;
+    border-bottom: rgb(108, 108, 108) 2px solid;
+    background-color: #FFF59B;
+    z-index: 1000;
+  }
+  .navBar ul {
+    justify-content: flex-end;
+    list-style-type: none;
+    margin-right: 20px;
+    padding-left: 20px;
+    display: flex;
+    font-size: 27px;
+
+}
+.navBar ul div {
+    display: flex;
+}
+.navBar li{
+    padding: 10px;
+    
+}
+.navBar li:hover {
+    background-color: #00c2ff;
+    transition: 0.5s ease smooth all;
+}

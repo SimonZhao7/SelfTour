@@ -26,34 +26,7 @@ body {
 		text-wrap: balance;
 	}
 }
-nav {
-  position: sticky;
-  top: 0;
-  border-bottom: rgb(108, 108, 108) 2px solid;
-  background-color: #FFF59B;
-  z-index: 1000;
-}
 
-ul {
-  display: flexbox;
-  justify-content: flex-end;
-	list-style-type: none;
-	margin-right: 20px;
-	padding-left:20px;
-	display: flex; /* Display items horizontally */
-  font-size: 27px;
-}
 
-li {
-	padding: 10px;
-}
 
-a {
-  position: relative;
-  text-decoration: none;
-  background-color: black;
-}
-li:hover{
-  background-color: #00c2ff;
-  transition: 0.5s ease smooth all; 
-}
+
