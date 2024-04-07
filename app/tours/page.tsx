@@ -20,6 +20,7 @@ const getStreetViewImage = (
   return `https://maps.googleapis.com/maps/api/streetview?location=${lat},${lng}&size=${size}&key=${process.env.MAPS_API_KEY}`;
 };
 
+
 const ToursList = async () => {
   const allToursRes = await getDocs(
     query(collection(db, "itineraries"), orderBy("dateAdded", "desc"))
@@ -38,8 +39,8 @@ const ToursList = async () => {
         {allTours.map((tour, i) => {
           const { id, destinations } = tour;
           return (
-              <div key={id} className={styles.card}>
-				<Link style={{ textDecoration: "none" }} href={`/tours/${id}`}>
+            <div key={id} className={styles.card}>
+              <Link style={{ textDecoration: "none" }} href={`/tours/${id}`}>
                 <img
                   className={styles.img}
                   src={images[i]}
@@ -53,8 +54,8 @@ const ToursList = async () => {
                     ))}
                   </div>
                 </div>
-				</Link>  
-              </div>
+              </Link>
+            </div>
           );
         })}
       </section>
