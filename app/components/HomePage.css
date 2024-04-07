@@ -10,46 +10,66 @@ body {
 .starone {
 	flex: 1 0 auto;
 	font-size: 185px;
-	opacity: .2;
-	right: 375px;
-	top: 320px;
+
+	left: 3%;
+	bottom: 10%;
 	transform: rotate(-30);
 	position: fixed;
-	/* background: white;	 */
+	fill: white;
+	fill-opacity: 90%;
+
 }
 .two {
 	flex: 1 0 auto;
 	font-size: 185px;
-	opacity: .2;
-	right: 633px;
-	top: 210px;
+	left: 40%;
+	bottom: 60%;
 	transform: rotate(-30);
-	position: fixed;	
+	position: fixed;
+	fill: white;
+	fill-opacity: 70%;
+
+	
 }
 .starthree {
 	flex: 1 0 auto;
 	font-size: 185px;
-	opacity: .12;
-	right: 225px;
-	top: 120px;
+	left: 80%;
+	bottom: 20%;
 	transform: rotate(-30);
 	position: fixed;	
+	fill: white;
+	fill-opacity: 90%;
+	
 }
 
 
   
 
 .start-button {
-	position: absolute;
-	bottom: 20px; /* Adjust this value to set the distance from the bottom */
-	right: 20px;
-	background: #00c2ff;
-	width: 18.2%;
-	height: 9.5%;
-	line-height: 9.5%;
-	box-shadow: 5px -10px rgba(246, 242, 3, 0.1);
+    position: absolute;
+    bottom: 40px; 
+    right: 40px;
+    background: #00c2ff;
+    width: 18.2%;
+    height: 9.5%;
+    line-height: 9.5%;
+    border-radius: 20px;
+    transition: transform 0.2s, box-shadow 0.2s; /* Adding box-shadow to transition */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.4); /* Shadow effect */
+	font-size: 16px;
 }
+.start-button:hover{
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.4); /* Shadow effect */
+	transform: scale(1.2);
+    font-size: 20px;
+}
+.start-button:active {
+    transform: scale(0.85); /* Change the scale value to adjust the button's size when clicked */
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); /* Adjusted shadow when button is clicked */
+	font-size: 16px;
 
+}
 .start-text {
 	font-size: 40px;
 	align-items: center;
@@ -57,10 +77,17 @@ body {
 
 .home-text {
 	position: absolute;
-	right: 10%;
-	bottom: 17%;
-	transform: rotate(-30deg);
-	font-size: 90px;
+	left: 10%;
+	bottom: 20%;
+	/* transform: rotate(-20deg); */
+	font-size: 130px;
 	font-family: 'Porter Sans Block', sans-serif;
 	line-height: 1;
+}
+.mascot {
+	position: fixed;
+	left: 50%;
+	bottom: 20%;
+	transform: rotate(15deg); 
+	size: 60%;
 }

@@ -5,7 +5,7 @@ import { FaHome } from 'react-icons/fa';
 import { IoEarth } from 'react-icons/io5';
 import { CiCirclePlus } from 'react-icons/ci';
 import Image from 'next/image';
-import { PiStarFourThin } from "react-icons/pi";
+import { BsStars } from "react-icons/bs";
 
 interface HomePageProps {
     // Define your props here
@@ -16,9 +16,9 @@ const HomePage: React.FC<HomePageProps> = (props) => {
 		<div className='page'>
 			<link href="https://fonts.cdnfonts.com/css/porter-sans-block" rel="stylesheet">
             </link>
-			<PiStarFourThin className='starone' />
-			<PiStarFourThin className='two' />
-			<PiStarFourThin className='starthree' />
+			<BsStars className='starone' />
+			<BsStars className='two' />
+			<BsStars className='starthree' />
 
 
 			<div className='home-text'>
@@ -36,7 +36,7 @@ const HomePage: React.FC<HomePageProps> = (props) => {
 						className='start-text'
 						style={{ fontFamily: 'Roboto Mono, monospace' }}>
 						<a href='/create' style={{ color: 'white', background: 'none' }}>
-							Start
+							start 🏁
 						</a>
 					</text>
 				</button>

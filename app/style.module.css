@@ -1,7 +1,7 @@
 .navBar {
     position: sticky;
     top: 0;
-    border-bottom: rgb(108, 108, 108) 2px solid;
+    border-bottom: rgb(108, 108, 108, 0.5) 1px solid;
     background-color: #FFF59B;
     z-index: 1000;
   }
@@ -23,5 +23,6 @@
 }
 .navBar li:hover {
     background-color: #00c2ff;
-    transition: 0.5s ease smooth all;
+    color: white;
+    transition: background-color 0.2s ease, color 0.2s ease; 
 }
