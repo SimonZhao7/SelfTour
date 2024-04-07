@@ -1,4 +1,4 @@
-import React from 'react';
+import Link from 'next/link';
 import { Itinerary } from "./types";
 
 interface TourDetailViewProps {
@@ -18,6 +18,10 @@ const TourDetailView: React.FC<TourDetailViewProps> = ({ itinerary }) => {
                     </div>
                 ))}
             </div>
+            {/* Link to open TourDetailView in a new tab */}
+            <Link href={`/tours/${itinerary.id}`} passHref>
+                <a target="_blank" rel="noopener noreferrer">Open in new tab</a>
+            </Link>
         </div>
     );
 }
