@@ -1,15 +1,7 @@
 import React, { useState, useEffect } from "react";
-import {
-  doc,
-  getDocs,
-  onSnapshot,
-  query,
-  collection,
-} from "firebase/firestore";
+import { getDocs, query, collection, where, orderBy } from "firebase/firestore";
 import { db } from "@/firebase";
-import AddLocationModal from "@/components/AddLocationModal";
-import { DatabasePlaces, PlaceRes, Itinerary } from "./types";
-import TourDetailView from "./TourDetailView";
+import { Itinerary } from "./types";
 import "./ToursList.css";
 import OpenAI from "openai";
 import styles from "./style.module.css";
@@ -29,7 +21,9 @@ const getStreetViewImage = (
 };
 
 const ToursList = async () => {
-  const allToursRes = await getDocs(query(collection(db, "itineraries")));
+  const allToursRes = await getDocs(
+    query(collection(db, "itineraries"), orderBy("dateAdded", "desc"))
+  );
   const allTours = allToursRes.docs.map(
     (d) => ({ id: d.id, ...d.data() } as Itinerary)
   );

@@ -8,4 +8,5 @@ export type Itinerary = {
   title: string;
   destinations: DatabasePlaces[];
   id: string;
+  dateAdded: Date;
 };

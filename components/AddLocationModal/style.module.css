@@ -41,6 +41,9 @@
     height: 50px;
     border-radius: 99999px;
     margin: 10px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .purpleBtn {

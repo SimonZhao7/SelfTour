@@ -4,7 +4,8 @@ export type DatabasePlaces = PlaceRes & {
   lng: number;
   desc: string;
 };
-export type Itinerary = { 
+export type Itinerary = {
   title: string;
   destinations: DatabasePlaces[];
+  dateAdded: Date;
 };

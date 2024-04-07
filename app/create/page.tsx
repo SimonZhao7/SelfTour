@@ -17,7 +17,9 @@ const loader = new Loader({
   libraries: ["places", "routes"],
 });
 
-export const LocationContext = createContext<google.maps.LatLngLiteral | null>(null);
+export const LocationContext = createContext<google.maps.LatLngLiteral | null>(
+  null
+);
 
 const GeneratePlaces = () => {
   const [map, setMap] = useState<google.maps.Map>();
@@ -103,7 +105,7 @@ const GeneratePlaces = () => {
         destinations.push(currentItinerary);
       }
     });
-    addItinerary({ destinations, title });
+    addItinerary({ destinations, title, dateAdded: new Date() });
   };
   return (
     <div className={styles.wrapper}>

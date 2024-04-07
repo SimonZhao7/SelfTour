@@ -5,6 +5,7 @@ import { AddLocationModalProps } from "./types";
 import AutocompleteSearch from "../AutocompleteSearch";
 import { PlaceRes } from "@/app/create/types";
 import OpenAI from "openai";
+import Spinner from "../Spinner";
 
 const openai = new OpenAI({
   apiKey: process.env.NEXT_PUBLIC_OPENAI_API_KEY,
@@ -18,12 +19,16 @@ const AddLocationModal: FunctionComponent<AddLocationModalProps> = ({
 }) => {
   const [id, setId] = useState<string>("");
   const [desc, setDesc] = useState<string>("");
+  const [aiLoading, setAiLoading] = useState(false);
 
   const handleNewPlaceData = async (
     id: string,
     desc: string,
     useAi: boolean
   ) => {
+    if (useAi) {
+      setAiLoading(true);
+    }
     const placesService = new google.maps.places.PlacesService(map!);
     placesService.getDetails(
       {
@@ -35,11 +40,12 @@ const AddLocationModal: FunctionComponent<AddLocationModalProps> = ({
             const aiResponse = await fetchPlaceDescription(res.name!);
             setDesc(aiResponse!);
           } else {
-						const newPlaceRes: PlaceRes = { ...res, desc };
-						onNewPlaceData(newPlaceRes);
-						setModal(false);
-					}
+            const newPlaceRes: PlaceRes = { ...res, desc };
+            onNewPlaceData(newPlaceRes);
+            setModal(false);
+          }
         }
+        setAiLoading(false);
       }
     );
   };
@@ -99,7 +105,7 @@ const AddLocationModal: FunctionComponent<AddLocationModalProps> = ({
             }}
             className={`${styles.submitButton} ${styles.purpleBtn}`}
           >
-            Generate Description with AI
+            {aiLoading ? <Spinner /> : "Generate Description with AI"}
           </button>
           <button onClick={handleFormSubmit} className={styles.submitButton}>
             Add Location
