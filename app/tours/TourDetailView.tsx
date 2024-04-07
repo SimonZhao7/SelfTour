@@ -1,9 +1,18 @@
-import Link from 'next/link';
+import React from 'react';
 import { Itinerary } from "./types";
+import dotenv from 'dotenv';
+
+dotenv.config();
+const apiKey = process.env.NEXT_PUBLIC_MAPS_API_KEY
 
 interface TourDetailViewProps {
     itinerary: Itinerary;
 }
+
+const getStreetViewImage = (lat: number, lng: number, size: string = '300x300'): string => {
+    return `https://maps.googleapis.com/maps/api/streetview?location=${lat},${lng}&size=${size}&key=${apiKey}`;
+};
+
 
 const TourDetailView: React.FC<TourDetailViewProps> = ({ itinerary }) => {
     return (
@@ -15,13 +24,12 @@ const TourDetailView: React.FC<TourDetailViewProps> = ({ itinerary }) => {
                     <div key={i}>
                         <h3>{destination.name}</h3>
                         <p>{destination.desc}</p>
+                        <div>
+                            <a href={getStreetViewImage(destination.lat, destination.lng, '500x400')}>View Street View</a>
+                        </div>
                     </div>
                 ))}
             </div>
-            {/* Link to open TourDetailView in a new tab */}
-            <Link href={`/tours/${itinerary.id}`} passHref>
-                <a target="_blank" rel="noopener noreferrer">Open in new tab</a>
-            </Link>
         </div>
     );
 }
