@@ -1,15 +1,18 @@
+import { Itinerary } from "@/app/create/types";
+import TourViewer from "@/components/TourViewer";
+import { db } from "@/firebase";
 import { getDoc, doc } from "firebase/firestore";
+import styles from "./style.module.css";
 
-const ViewTour = () => {
-  // Get list of items by server
-  // useState to render the ith path in a subcomponent
-  // Arrows to go forward (backward?) to next step 
+const ViewTour = async ({ params }: { params: { id: string } }) => {
+  const { id } = params;
+  const tour = (await getDoc(doc(db, "itineraries", id))).data() as Itinerary;
 
   return (
-    <main>
-
+    <main className={styles.main}>
+      <TourViewer tour={tour} />
     </main>
-  )
-}
+  );
+};
 
 export default ViewTour;

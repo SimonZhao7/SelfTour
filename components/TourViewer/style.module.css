@@ -1,0 +1,64 @@
+.viewWrapper {
+    width: 100%;
+    height: 100%;
+    display: flex;
+}
+
+.viewLeft {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    background-color: #f2f2f2;
+}
+
+.leftTitle {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    font-size: 24px;
+}
+
+.sectionHeader {
+    width: 100%;
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 60px;
+}
+
+.viewRight {
+    flex: 2;
+}
+
+.stepHeader {
+    font-size: 60px;
+}
+
+.hereBtn {
+    width: 100%;
+    height: 70px;
+    background-color: #86E2FF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 9999px;
+    font-size: 18px;
+    letter-spacing: 5px;
+    cursor: pointer;
+}
+
+.hereBtn:hover {
+    background-color: #7bcce5;
+}
+
+.error {
+    color: red;
+    margin: 5px;
+}
+
+.title {
+    font-size: 24px;
+}

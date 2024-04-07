@@ -1,7 +1,7 @@
 "use client";
 import { db } from "@/firebase";
 import { collection, addDoc } from "firebase/firestore";
-import { useState, useEffect } from "react";
+import { useState, useEffect, createContext } from "react";
 import "./GeneratePlaces.css";
 import { Loader } from "@googlemaps/js-api-loader";
 import styles from "./style.module.css";
@@ -17,11 +17,14 @@ const loader = new Loader({
   libraries: ["places", "routes"],
 });
 
+export const LocationContext = createContext<google.maps.LatLngLiteral | null>(null);
+
 const GeneratePlaces = () => {
   const [map, setMap] = useState<google.maps.Map>();
   const [title, setTitle] = useState("My Itinerary");
   const [places, setPlaces] = useState<PlaceRes[]>([]);
   const [modalOpen, setModalOpen] = useState(false);
+  const [pos, setPos] = useState<google.maps.LatLngLiteral | null>(null);
   const router = useRouter();
   // Optionally, you can return a value here if needed, but it's not necessary for an onClick handler
 
@@ -47,6 +50,12 @@ const GeneratePlaces = () => {
         }
       );
       setMap(map);
+
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition((pos) => {
+          setPos({ lat: pos.coords.latitude, lng: pos.coords.longitude });
+        });
+      }
 
       if (places.length < 1) return;
       const directionsService = new google.maps.DirectionsService();
@@ -158,13 +167,15 @@ const GeneratePlaces = () => {
       <div id="map" style={{ width: "66%", height: "calc(100% - 60px)" }}>
         <p>&nbsp;</p>
       </div>
-      {modalOpen && (
-        <AddLocationModal
-          setModal={setModalOpen}
-          onNewPlaceData={(placeData) => setPlaces([...places, placeData])}
-          map={map!}
-        />
-      )}
+      <LocationContext.Provider value={pos}>
+        {modalOpen && (
+          <AddLocationModal
+            setModal={setModalOpen}
+            onNewPlaceData={(placeData) => setPlaces([...places, placeData])}
+            map={map!}
+          />
+        )}
+      </LocationContext.Provider>
     </div>
   );
 };

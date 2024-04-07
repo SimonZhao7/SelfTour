@@ -20,8 +20,15 @@ body {
 	border: 2px solid #ccc; /* Border color */
 	border-radius: 10px; /* Rounded edges */
 	overflow: hidden; /* Clip content that overflows the rounded npm corners */
+<<<<<<< Updated upstream
     width: 40vw;
     margin: 20px;
+=======
+	padding: 10px; /* Add padding to the container */
+    width: 40vw;
+    margin: 20px;
+    background-color: rgba(255, 255, 255, 0.65);
+>>>>>>> Stashed changes
     padding: 20px;
 }
 
@@ -32,3 +39,13 @@ body {
 .tour-image {
     width: 100px;
 }
+<<<<<<< Updated upstream
+=======
+
+/* 
+.tour-image {
+    width: 100px;
+    display: flex;
+    justify-content: right;
+} */
+>>>>>>> Stashed changes

@@ -1,21 +1,27 @@
-import { useRef, useState, useEffect, FunctionComponent } from "react";
+import {
+  useRef,
+  useState,
+  useEffect,
+  useContext,
+  FunctionComponent,
+} from "react";
 import { AutocompleteSearchProps } from "./types";
 import styles from "./style.module.css";
 // Icons
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
+import { LocationContext } from "@/app/create/page";
 
 const AutocompleteSearch: FunctionComponent<AutocompleteSearchProps> = ({
   placeholder,
   placeIdChangeHandle,
 }) => {
   const [search, setSearch] = useState("");
-  const [disabled, setDisabled] = useState(true);
   const [locations, setLocations] = useState<
     google.maps.places.AutocompletePrediction[]
   >([]);
   const [showRes, setShowRes] = useState(false);
-  const [pos, setPos] = useState<google.maps.LatLngLiteral>();
   const inputWrapper = useRef<HTMLDivElement>(null);
+  const pos = useContext(LocationContext);
 
   const handleClickEvent = (e: MouseEvent) => {
     if (inputWrapper.current?.contains(e.target as Node)) {
@@ -26,13 +32,6 @@ const AutocompleteSearch: FunctionComponent<AutocompleteSearchProps> = ({
   };
 
   useEffect(() => {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition((pos) => {
-        setPos({ lat: pos.coords.latitude, lng: pos.coords.longitude });
-        setDisabled(false);
-      });
-    }
-
     window.addEventListener("click", handleClickEvent);
     return () => window.removeEventListener("click", handleClickEvent);
   }, []);
@@ -65,11 +64,11 @@ const AutocompleteSearch: FunctionComponent<AutocompleteSearchProps> = ({
       <MagnifyingGlassIcon className="absolute left-2 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900" />
       <input
         className={styles.autoInput}
-        disabled={disabled}
         type="text"
+        disabled={pos === null}
         style={{ marginBottom: "20px" }}
         value={search}
-        placeholder={disabled ? "Getting location..." : placeholder}
+        placeholder={pos === null ? "Getting location..." : placeholder}
         onChange={(e) => setSearch(e.target.value)}
       />
       {locations.length > 0 && showRes && (
