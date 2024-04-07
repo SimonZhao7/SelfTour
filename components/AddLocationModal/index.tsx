@@ -3,7 +3,7 @@ import styles from "./style.module.css";
 import { RxCross2 } from "react-icons/rx";
 import { AddLocationModalProps } from "./types";
 import AutocompleteSearch from "../AutocompleteSearch";
-import { PlaceRes } from "@/app/create/types";
+import { PlaceRes } from "@/components/CreateTour/types";
 import OpenAI from "openai";
 import Spinner from "../Spinner";
 

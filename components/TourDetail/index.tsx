@@ -1,7 +1,7 @@
 "use client";
 import { FunctionComponent, useEffect } from "react";
 import { loader } from "@/util";
-import { Itinerary } from "@/app/create/types";
+import { Itinerary } from "@/components/CreateTour/types";
 import { TourDetailProps } from "./types";
 import styles from "./style.module.css";
 

@@ -1,4 +1,4 @@
-import { PlaceRes } from "@/app/create/types";
+import { PlaceRes } from "@/components/CreateTour/types";
 import { Dispatch, SetStateAction } from "react";
 
 export type AddLocationModalProps = {

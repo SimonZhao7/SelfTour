@@ -1,4 +1,4 @@
-import { Itinerary } from "@/app/create/types";
+import { Itinerary } from "@/components/CreateTour/types";
 
 export type TourViewerProps = {
   tour: Itinerary;

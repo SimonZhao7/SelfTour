@@ -9,7 +9,7 @@ import { AutocompleteSearchProps } from "./types";
 import styles from "./style.module.css";
 // Icons
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
-import { LocationContext } from "@/app/create/page";
+import { LocationContext } from "@/components/CreateTour";
 
 const AutocompleteSearch: FunctionComponent<AutocompleteSearchProps> = ({
   placeholder,
