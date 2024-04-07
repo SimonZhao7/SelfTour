@@ -3,6 +3,42 @@ body {
 	overflow: hidden;
 }
 
+.page {
+	width: 100%;
+}
+
+.starone {
+	flex: 1 0 auto;
+	font-size: 185px;
+	opacity: .2;
+	right: 375px;
+	top: 320px;
+	transform: rotate(-30);
+	position: fixed;
+	/* background: white;	 */
+}
+.two {
+	flex: 1 0 auto;
+	font-size: 185px;
+	opacity: .2;
+	right: 633px;
+	top: 210px;
+	transform: rotate(-30);
+	position: fixed;	
+}
+.starthree {
+	flex: 1 0 auto;
+	font-size: 185px;
+	opacity: .12;
+	right: 225px;
+	top: 120px;
+	transform: rotate(-30);
+	position: fixed;	
+}
+
+
+  
+
 .start-button {
 	position: absolute;
 	bottom: 20px; /* Adjust this value to set the distance from the bottom */
