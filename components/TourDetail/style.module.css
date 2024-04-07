@@ -1,0 +1,39 @@
+.leftCol {
+    flex: 1;
+    background-color: #f0f0f0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: min-content 1fr;
+    gap: 20px;
+    padding: 20px;
+    overflow-y: scroll;
+}
+
+.map {
+    flex: 1;
+}
+
+.card {
+    background-color: white;
+    padding: 30px;
+    border-radius: 5px;
+    box-shadow: 0 3px 15px 0 lightgray;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    min-height: 0;
+}
+
+.card:hover {
+    transform: scale(1.05);
+}
+
+.cardHeading {
+    font-size: 24px;
+    font-weight: 500;
+}
+
+.cardDetail {
+    margin-top: 15px;
+    font-size: 14px;
+    color: gray;
+}

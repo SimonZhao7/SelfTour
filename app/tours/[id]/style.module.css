@@ -1,0 +1,4 @@
+.wrapper {
+    display: flex;
+    height: calc(100% - 60px);
+}
