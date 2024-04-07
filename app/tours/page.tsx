@@ -20,6 +20,7 @@ const getStreetViewImage = (
   return `https://maps.googleapis.com/maps/api/streetview?location=${lat},${lng}&size=${size}&key=${process.env.MAPS_API_KEY}`;
 };
 
+export const dynamic = "force-dynamic";
 
 const ToursList = async () => {
   const allToursRes = await getDocs(
