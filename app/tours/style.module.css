@@ -1,0 +1,54 @@
+.main {
+    width: 100%;
+    height: calc(100% - 60px);
+    background-color: #f0f0f0;
+    padding: 0 200px;
+}
+
+.centeredCol {
+    width: 100%;
+    height: 100%;
+    overflow-y: scroll;
+    margin: auto;
+    gap: 40px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    padding: 40px 0;
+}
+
+.card {
+    width: 100%;
+    height: 400px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 5px 10px lightgray;
+    overflow-y: scroll;
+    transition: transform 0.3s ease;
+    cursor: pointer;
+}
+
+.card:hover {
+    transform: scale(1.05);
+}
+
+.title {
+    font-size: 28px;
+}
+
+.img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    border-radius: 10px 10px 0 0;
+}
+
+.cardInfo {
+    padding: 20px;
+}
+
+.dstContainer {
+    margin-top: 15px;
+    overflow-y: scroll;
+}

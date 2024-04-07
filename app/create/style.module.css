@@ -13,7 +13,7 @@
 .tourItems {
     flex: 1;
     padding: 40px 40px 0px 40px;
-    height: 70px;
+    height: 100%;
     padding: 40px;
     background-color: #f2f2f2;
 }
